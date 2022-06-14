@@ -57,11 +57,11 @@ void sof(vector<vector<float>> &s){
         cout << "fitness probability of  " << ++lll << " " << f/sum << endl;
         fp.pb(f/sum);
     }
-    vector<float> cumfp = fp;
+    vector<float> cumulativefp = fp;
     lll = 0;
     loops(1,s.size(), i){
-        cumfp[i] = cumfp[i-1] + fp[i];
-        cout << "cum probability of  " << ++lll << " " << cumfp[i] << endl;
+        cumulativefp[i] = cumulativefp[i-1] + fp[i];
+        cout << "cumulative probability of  " << ++lll << " " << cumulativefp[i] << endl;
     }
 
     vector<vector<float>> t = s;
@@ -71,8 +71,8 @@ void sof(vector<vector<float>> &s){
         cout << "random number generated for " << i+1 << " is " << rg << endl;
         ll idx = -1;
         loop0(10,k){
-            //cout << rg << " " << cumfp[k] << endl;
-            if(rg <= cumfp[k] && idx == -1) idx = k;
+            //cout << rg << " " << cumulativefp[k] << endl;
+            if(rg <= cumulativefp[k] && idx == -1) idx = k;
         }
         cout << "corresponding sample space index : " << idx << endl;
         t[i] = s[idx];
